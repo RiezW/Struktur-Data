@@ -43,7 +43,6 @@ class KosManager {
 
     +tambahKos(Kos k) void
     +tampilkanSemuaKos() void
-    +tampilkanKosTersedia() void
     +urutkanRating() void
     +urutkanHarga() void
     +tampilkanRekomendasi() void
@@ -263,24 +262,31 @@ public class Main {
 **Output**
 
 Tampilan Menu
+
 ![alt text](assets/menu.png)
 
 Tampilan informasi kos
+
 ![alt text](assets/menu1.png)
 
 Tampilkan berdasarkan rating
+
 ![alt text](assets/menu2.png)
 
 Tampilkan berdasarkan harga
+
 ![alt text](assets/menu3.png)
 
 Tampilkan top 3 rekomendasi
+
 ![alt text](assets/menu4.png)
 
 Tampilkan fungsi pesan kos
+
 ![alt text](assets/menu5.png)
 
 Tampilkan ketika pilih keluar
+
 ![alt text](assets/menu6.png)
 
 **Prinsip OOP yang digunakan**
