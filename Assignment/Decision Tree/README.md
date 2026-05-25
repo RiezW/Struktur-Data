@@ -43,7 +43,7 @@ Komponen utama:
 ## 3. Visualisasi Diagram
 1. Visualisasi Dataset Mahasiswa
 
-    Pada penelitian ini, digunakan contoh data mahasiswa yang terdiri dari beberapa atribut, yaitu nilai akademik, tingkat kehadiran, dan jumlah SKS yang diambil. Data tersebut digunakan untuk menentukan status kelulusan mahasiswa.
+    Pada penelitian ini digunakan data mahasiswa yang terdiri dari beberapa atribut, yaitu nilai akademik, tingkat kehadiran, dan jumlah SKS yang diambil. Data tersebut digunakan untuk menentukan apakah mahasiswa dinyatakan lulus atau tidak lulus.
 
     Contoh dataset:
 
@@ -55,17 +55,17 @@ Komponen utama:
     | 72 | 75 | 20 | Tidak Lulus |
     | 88 | 95 | 24 | Lulus |
 
-    Visualisasi data dapat direpresentasikan menggunakan scatter plot dengan:
+    Data tersebut dapat divisualisasikan menggunakan scatter plot dengan:
     - Sumbu X = Nilai Akademik
     - Sumbu Y = Kehadiran
     - Titik biru = Mahasiswa lulus
     - Titik merah = Mahasiswa tidak lulus
 
-    Visualisasi ini menunjukkan bahwa data tidak selalu dapat dipisahkan secara optimal hanya dengan satu atribut saja.
+    Visualisasi ini menunjukkan bahwa status kelulusan mahasiswa tidak hanya dipengaruhi oleh satu atribut saja, tetapi juga dipengaruhi oleh kombinasi beberapa atribut secara bersamaan.
 
 2. Visualisasi Decision Tree Tradisional
 
-    Decision Tree tradisional bekerja dengan melakukan pemisahan data menggunakan satu atribut pada setiap node.
+    Decision Tree tradisional bekerja dengan membagi data berdasarkan satu atribut pada setiap proses pemisahan.
 
     Contoh struktur Decision Tree:
 
@@ -73,23 +73,23 @@ Komponen utama:
                     Nilai > 75?
                     /          \
                 Ya            Tidak
-            Kehadiran >80?    Tidak Lulus
+            Kehadiran > 80?    Tidak Lulus
                 /      \
             Ya         Tidak
         Lulus      Tidak Lulus
     ````
 
-    Pada struktur tersebut:
+    Penjelasan:
 
     * Root node digunakan sebagai keputusan awal.
     * Internal node digunakan untuk proses pemisahan data.
-    * Leaf node digunakan untuk menentukan hasil klasifikasi akhir.
+    * Leaf node digunakan untuk menentukan hasil akhir klasifikasi.
 
-    Decision Tree tradisional menggunakan axis-parallel split, yaitu pemisahan berdasarkan satu atribut dalam satu waktu.
+    Pada metode ini, proses pemisahan dilakukan menggunakan axis-parallel split, yaitu pemisahan berdasarkan satu atribut dalam satu waktu.
 
 3. Visualisasi Decision Boundary pada Decision Tree
 
-    Pada Decision Tree tradisional, batas keputusan (decision boundary) berbentuk garis vertikal atau horizontal karena pemisahan hanya dilakukan berdasarkan satu atribut.
+    Pada Decision Tree tradisional, batas keputusan (decision boundary) berbentuk garis vertikal atau horizontal karena pemisahan data hanya dilakukan menggunakan satu atribut.
 
     Contoh split:
 
@@ -109,11 +109,11 @@ Komponen utama:
     |
     ```
 
-    Keterbatasan pendekatan ini adalah model sulit merepresentasikan hubungan antar atribut yang kompleks.
+    Pendekatan ini cukup baik untuk data sederhana, tetapi menjadi kurang optimal ketika data memiliki hubungan antar atribut yang lebih kompleks.
 
 4. Visualisasi Oblique Decision Tree
 
-    Oblique Decision Tree menggunakan multivariate split, yaitu pemisahan berdasarkan kombinasi beberapa atribut sekaligus.
+    Oblique Decision Tree merupakan pengembangan dari Decision Tree tradisional yang menggunakan kombinasi beberapa atribut sekaligus dalam proses pemisahan data.
 
     Contoh split:
 
@@ -132,7 +132,10 @@ Komponen utama:
         Tidak Lulus
     ```
 
-    Dengan pendekatan ini, model mampu membentuk decision boundary yang lebih fleksibel dibandingkan Decision Tree tradisional.
+    Dengan menggunakan kombinasi atribut, Oblique Decision Tree mampu membentuk batas keputusan yang lebih fleksibel sehingga lebih efektif dalam menangani data yang kompleks.
+
+    Selain itu, struktur pohon yang dihasilkan juga cenderung lebih ringkas dibandingkan Decision Tree tradisional.
+
 ## 4. Aplikasi Struktur Tree
 ## 5. Keunggulan 
 ## 6. Kekurangan
