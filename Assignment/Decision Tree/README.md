@@ -137,7 +137,6 @@ class Mahasiswa {
     int kehadiran;
     int sks;
     String status;
-
     public Mahasiswa(int nilai, int kehadiran, int sks, String status) {
         this.nilai = nilai;
         this.kehadiran = kehadiran;
