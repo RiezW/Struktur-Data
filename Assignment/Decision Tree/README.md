@@ -137,6 +137,136 @@ Komponen utama:
     Selain itu, struktur pohon yang dihasilkan juga cenderung lebih ringkas dibandingkan Decision Tree tradisional.
 
 ## 4. Aplikasi Struktur Tree
+**A. Input Data Mahasiswa**, digunakan untuk menyimpan informasi akademik mahasiswa yang akan digunakan sebagai dataset dalam proses pelatihan (training) maupun pengujian (testing) model klasifikasi. Data yang dimasukkan terdiri dari beberapa atribut yang dianggap memengaruhi kelulusan mahasiswa, yaitu:
+- Nilai Akademik → menunjukkan performa akademik mahasiswa selama perkuliahan.
+- Persentase Kehadiran → menunjukkan tingkat kehadiran mahasiswa dalam mengikuti kegiatan perkuliahan.
+- Jumlah SKS → menunjukkan jumlah mata kuliah yang berhasil ditempuh mahasiswa.
+- Status Kelulusan → digunakan sebagai label atau target klasifikasi yang akan dipelajari oleh model.
+  
+Data-data tersebut nantinya akan dianalisis oleh algoritma Decision Tree maupun Oblique Decision Tree untuk menemukan pola yang dapat digunakan dalam memprediksi status kelulusan mahasiswa baru. Sebagai contoh, mahasiswa dengan nilai tinggi, kehadiran yang baik, dan jumlah SKS yang mencukupi umumnya memiliki peluang lebih besar untuk lulus dibandingkan mahasiswa yang memiliki nilai rendah dan tingkat kehadiran yang buruk. Berikut implementasi kodenya:
+```java
+class Mahasiswa {
+    int nilai;
+    int kehadiran;
+    int sks;
+    String status;
+
+    public Mahasiswa(int nilai, int kehadiran, int sks, String status) {
+        this.nilai = nilai;
+        this.kehadiran = kehadiran;
+        this.sks = sks;
+        this.status = status;
+    }
+}
+
+public class DatasetMahasiswa {
+    public static void main(String[] args) {
+
+        Mahasiswa[] data = {
+            new Mahasiswa(85, 90, 24, "Lulus"),
+            new Mahasiswa(78, 82, 22, "Lulus"),
+            new Mahasiswa(60, 70, 18, "Tidak Lulus"),
+            new Mahasiswa(72, 75, 20, "Tidak Lulus"),
+            new Mahasiswa(88, 95, 24, "Lulus")
+        };
+
+        for (Mahasiswa m : data) {
+            System.out.println(
+                "Nilai: " + m.nilai +
+                ", Kehadiran: " + m.kehadiran +
+                ", SKS: " + m.sks +
+                ", Status: " + m.status
+            );
+        }
+    }
+}
+```
+
+B. Fitur ini digunakan untuk membangun struktur pohon keputusan (Decision Tree) berdasarkan dataset mahasiswa yang telah dimasukkan sebelumnya. Pada tahap ini, sistem akan mencari atribut terbaik yang dapat digunakan untuk memisahkan data menjadi beberapa kelompok. Pemilihan atribut dilakukan berdasarkan kemampuan atribut tersebut dalam membedakan mahasiswa yang lulus dan tidak lulus. Sebagai contoh, sistem dapat menemukan bahwa atribut Nilai Akademik merupakan atribut yang paling berpengaruh sehingga dipilih sebagai root node. Contoh aturan yang dapat dihasilkan:
+```java
+Jika Nilai > 75
+    Jika Kehadiran > 80
+        Lulus
+    Jika tidak
+        Tidak Lulus
+Jika Nilai <= 75
+    Tidak Lulus
+```
+Hasil dari proses ini adalah sebuah pohon keputusan yang dapat digunakan untuk melakukan prediksi terhadap data baru. Berikut implementasi kodenya:
+```java
+public class DecisionTreeSederhana {
+
+    public static String prediksi(int nilai, int kehadiran) {
+
+        if (nilai > 75) {
+            if (kehadiran > 80) {
+                return "Lulus";
+            } else {
+                return "Tidak Lulus";
+            }
+        } else {
+            return "Tidak Lulus";
+        }
+    }
+
+    public static void main(String[] args) {
+
+        String hasil = prediksi(80, 85);
+
+        System.out.println("Prediksi: " + hasil);
+    }
+}
+```
+
+**C. Prediksi Kelulusan Mahasiswa**, digunakan untuk menentukan status kelulusan mahasiswa berdasarkan model yang telah dibangun sebelumnya. Pengguna hanya perlu memasukkan data mahasiswa berupa nilai akademik, tingkat kehadiran, dan jumlah SKS. Sistem kemudian akan menelusuri aturan yang terdapat pada pohon keputusan hingga mencapai leaf node yang berisi hasil klasifikasi. Dengan adanya fitur ini, pihak akademik dapat melakukan evaluasi terhadap mahasiswa sejak dini dan memberikan tindakan yang sesuai apabila ditemukan potensi keterlambatan kelulusan. Berikut implementasi kodenya:
+```java
+public class PrediksiKelulusan {
+
+    public static String prediksi(int nilai, int kehadiran) {
+
+        if (nilai > 75 && kehadiran > 80) {
+            return "Lulus";
+        }
+
+        return "Tidak Lulus";
+    }
+
+    public static void main(String[] args) {
+
+        int nilai = 82;
+        int kehadiran = 88;
+
+        String hasil = prediksi(nilai, kehadiran);
+
+        System.out.println("Status Kelulusan: " + hasil);
+    }
+}
+```
+
+**D. Perbandingan Hasil Prediksi**, digunakan untuk membandingkan hasil klasifikasi yang diperoleh dari Decision Tree dan Oblique Decision Tree. Tujuannya adalah untuk mengetahui metode mana yang memberikan hasil yang lebih baik berdasarkan data yang digunakan. Perbandingan dapat dilakukan menggunakan metrik seperti akurasi, precision, recall, dan F1-score. Hasil evaluasi ini dapat digunakan untuk menentukan model yang paling sesuai dalam memprediksi kelulusan mahasiswa. Berikut implementasi kodenya:
+```java
+public class PerbandinganModel {
+
+    public static void main(String[] args) {
+
+        double akurasiDecisionTree = 82.5;
+        double akurasiObliqueTree = 89.7;
+
+        System.out.println("Decision Tree : " +
+                           akurasiDecisionTree + "%");
+
+        System.out.println("Oblique Decision Tree : " +
+                           akurasiObliqueTree + "%");
+
+        if (akurasiObliqueTree > akurasiDecisionTree) {
+            System.out.println(
+                "Oblique Decision Tree memiliki performa lebih baik."
+            );
+        }
+    }
+}
+```
+
 ## 5. Keunggulan 
 ## 6. Kekurangan
 **Decision Tree**
