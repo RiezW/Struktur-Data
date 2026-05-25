@@ -17,20 +17,15 @@ Namun, dalam praktiknya, data yang digunakan sering kali memiliki pola yang komp
 Untuk mengatasi permasalahan tersebut, dikembangkan Oblique Decision Tree sebagai variasi dari Decision Tree. Berbeda dengan metode tradisional, Oblique Decision Tree menggunakan multivariate split, yaitu pemisahan data berdasarkan kombinasi linear dari beberapa atribut. Dengan pendekatan ini, model dapat membentuk batas keputusan yang lebih fleksibel, menghasilkan struktur pohon yang lebih efisien, serta meningkatkan akurasi pada data yang kompleks. Oleh karena itu, diperlukan analisis lebih lanjut mengenai perbedaan antara Decision Tree tradisional dan Oblique Decision Tree, baik dari segi struktur, kompleksitas, maupun performa, untuk memahami keunggulan dan keterbatasan masing-masing metode dalam menyelesaikan permasalahan klasifikasi.
 
 ## 2. Penjelasan Struktur Tree dan Algoritma 
-Decision Tree merupakan struktur data berbentuk pohon (tree) yang digunakan untuk proses klasifikasi atau pengambilan keputusan.
+Decision Tree merupakan salah satu struktur data berbentuk pohon (tree) yang banyak digunakan dalam proses klasifikasi dan pengambilan keputusan. Struktur ini bekerja dengan cara membagi data ke dalam beberapa kelompok berdasarkan aturan tertentu hingga diperoleh hasil klasifikasi akhir. Karena memiliki bentuk yang menyerupai pohon, Decision Tree terdiri atas beberapa komponen utama, yaitu **Root Node**, **Internal Node**, dan **Leaf Node**. Root Node merupakan node pertama yang menjadi titik awal proses pengambilan keputusan. Pada node ini dipilih atribut yang dianggap paling berpengaruh untuk memisahkan data. Setelah proses pemisahan dilakukan, data akan mengalir menuju Internal Node yang berfungsi sebagai node percabangan. Internal Node berisi atribut atau kondisi tertentu yang digunakan untuk melakukan pemisahan lanjutan terhadap data yang masih belum dapat diklasifikasikan secara pasti. Proses ini terus berlangsung hingga mencapai Leaf Node, yaitu node terakhir yang tidak memiliki cabang lagi dan berisi hasil klasifikasi akhir, seperti "Lulus" atau "Tidak Lulus".
 
-Komponen utama:
-1. Root Node (Akar)
-    - Node pertama
-    - Berisi atribut awal untuk melakukan pemisahan data
+Dalam kasus prediksi kelulusan mahasiswa, Root Node berupa atribut nilai akademik yang digunakan sebagai dasar keputusan pertama. Jika mahasiswa memiliki nilai di atas batas tertentu, proses akan dilanjutkan ke percabangan berikutnya yang mungkin mempertimbangkan atribut kehadiran. Sebaliknya, apabila nilai berada di bawah batas yang ditentukan, mahasiswa dapat langsung diklasifikasikan ke dalam kategori tertentu. Dengan mekanisme tersebut, setiap jalur dari Root Node menuju Leaf Node merepresentasikan aturan keputusan (decision rule) yang dapat digunakan untuk menjelaskan alasan suatu data masuk ke dalam kelas tertentu.
 
-2. Internal Node
-    - Node percabangan
-    - Berisi atribut yang digunakan untuk split data
+Sebagai pengembangan dari Decision Tree tradisional, Oblique Decision Tree diperkenalkan untuk mengatasi keterbatasan yang muncul ketika data memiliki hubungan yang kompleks antar atribut. Pada Decision Tree tradisional, setiap proses pemisahan hanya mempertimbangkan satu atribut dalam satu waktu (axis-parallel split). Pendekatan ini sering kali kurang optimal ketika suatu keputusan sebenarnya dipengaruhi oleh kombinasi beberapa atribut secara bersamaan. Oleh karena itu, Oblique Decision Tree menggunakan multivariate split, yaitu pemisahan data berdasarkan kombinasi linear dari dua atau lebih atribut. Dengan pendekatan ini, model mampu membentuk batas keputusan (decision boundary) yang lebih fleksibel sehingga dapat merepresentasikan pola data yang lebih kompleks.
 
-3. Leaf Node (Daun)
-    - Node akhir
-    - Berisi hasil klasifikasi (misal: Lulus / Tidak Lulus)
+Meskipun memiliki struktur dasar yang sama, yaitu terdiri atas **Root Node**, **Internal Node**, dan **Leaf Node**, perbedaan utama antara Decision Tree dan Oblique Decision Tree terletak pada aturan pemisahan yang digunakan. Pada Decision Tree, sebuah node dapat menggunakan aturan sederhana seperti `Nilai > 75`, sedangkan pada Oblique Decision Tree aturan yang digunakan dapat berupa kombinasi beberapa atribut, misalnya `2 × Nilai + Kehadiran > 240`. Dengan mempertimbangkan beberapa atribut secara bersamaan, Oblique Decision Tree sering kali mampu menghasilkan struktur pohon yang lebih ringkas dan akurat dibandingkan Decision Tree tradisional.
+
+Algoritma Oblique Decision Tree bekerja dengan mencari kombinasi atribut yang mampu memisahkan data secara optimal pada setiap node. Kombinasi tersebut membentuk suatu hyperplane yang digunakan sebagai batas pemisah antar kelas. Setelah pemisahan dilakukan, proses yang sama akan diterapkan pada setiap subset data hingga diperoleh Leaf Node yang berisi hasil klasifikasi akhir. Pendekatan ini memungkinkan model menangkap hubungan antar atribut dengan lebih baik sehingga sangat cocok digunakan pada permasalahan klasifikasi yang melibatkan banyak variabel dan pola data yang kompleks, seperti prediksi kelulusan mahasiswa berdasarkan nilai akademik, tingkat kehadiran, dan jumlah SKS yang ditempuh.
 
 ## 3. Visualisasi Diagram
 1. Visualisasi Dataset Mahasiswa
