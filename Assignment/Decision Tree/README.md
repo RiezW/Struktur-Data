@@ -385,6 +385,19 @@ Berdasarkan perbandingan tersebut, dapat disimpulkan bahwa **Decision Tree** leb
 
 ## 8. Analisis Kompleksitas Berdasarkan Struktur Tree 
 ## 9. Potensi Pengembangan ke Depan 
+
+Berdasarkan hasil analisis yang telah dilakukan, Decision Tree dan Oblique Decision Tree masih memiliki potensi untuk dikembangkan lebih lanjut agar mampu menghasilkan performa klasifikasi yang lebih baik.
+
+Pada Decision Tree tradisional, pengembangan dapat dilakukan dengan menerapkan teknik pruning untuk mengurangi jumlah node yang tidak diperlukan. Dengan pruning, struktur pohon dapat menjadi lebih sederhana sehingga risiko overfitting dapat dikurangi. Selain itu, penggunaan dataset yang lebih besar juga dapat membantu model dalam menghasilkan pola klasifikasi yang lebih stabil.
+
+Sementara itu, pada Oblique Decision Tree, pengembangan dapat difokuskan pada proses pencarian kombinasi atribut terbaik pada setiap node. Karena metode ini menggunakan multivariate split, proses perhitungannya cenderung lebih kompleks dibandingkan Decision Tree biasa. Oleh karena itu, diperlukan metode optimasi yang lebih efisien agar proses training dapat berjalan lebih cepat tanpa mengurangi akurasi model.
+
+Dalam konteks prediksi kelulusan mahasiswa, sistem juga dapat dikembangkan dengan menambahkan atribut lain yang lebih beragam, seperti IPK, jumlah pengulangan mata kuliah, aktivitas organisasi, maupun hasil evaluasi dosen. Dengan data yang lebih lengkap, model diharapkan mampu menghasilkan prediksi yang lebih akurat dan sesuai dengan kondisi nyata mahasiswa.
+
+Selain itu, implementasi sistem dapat dikembangkan menjadi aplikasi berbasis web atau dashboard interaktif sehingga proses prediksi dan evaluasi mahasiswa dapat dilakukan secara langsung oleh pihak akademik dengan lebih mudah dan efisien.
+
+Dengan adanya pengembangan tersebut, Decision Tree dan Oblique Decision Tree diharapkan dapat digunakan secara lebih optimal dalam membantu proses pengambilan keputusan, khususnya pada bidang pendidikan.
+
 ## 10. Hasil Implementasi
 ## 11. Perbandingan performa real
 
