@@ -383,7 +383,7 @@ Namun, metode ini memiliki beberapa kekurangan, seperti:
 Berdasarkan perbandingan tersebut, dapat disimpulkan bahwa **Decision Tree** lebih cocok digunakan pada data sederhana yang membutuhkan interpretasi yang mudah, sedangkan **Oblique Decision Tree** lebih sesuai untuk data kompleks yang membutuhkan akurasi lebih tinggi serta kemampuan menangkap hubungan antar variabel secara lebih optimal.
 
 ## 8. Analisis Kompleksitas Berdasarkan Struktur Tree 
-## 8. Analisis Kompleksitas Berdasarkan Struktur Tree 
+
 **Decision Tree**
 
 1. Analisis Struktur
