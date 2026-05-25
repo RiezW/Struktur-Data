@@ -281,7 +281,92 @@ public class PerbandinganModel {
 - Perhitungan lebih komples
 - Butuh effort lebih untuk memahami
   
-## 7. Perbandingan Antara Tree Dasar dan Modifikasi Secara Teori 
+## 7. Perbandingan Antara Tree Dasar dan Modifikasi Secara Teori
+
+Berdasarkan pembahasan pada poin sebelumnya, **Decision Tree** dan **Oblique Decision Tree** memiliki perbedaan mendasar yang dapat dianalisis dari segi konsep, struktur, kemampuan representasi data, kompleksitas, serta kelebihan dan keterbatasannya dalam menyelesaikan permasalahan klasifikasi.
+
+**A. Perbandingan Berdasarkan Konsep Dasar**
+
+**Decision Tree** merupakan metode klasifikasi yang menggunakan pemisahan berbasis satu atribut (*axis-parallel split*) pada setiap node. Artinya, setiap proses pengambilan keputusan hanya mempertimbangkan satu variabel dalam satu waktu. Pendekatan ini membuat Decision Tree mudah dipahami dan diinterpretasikan karena setiap aturan keputusan dapat dibaca secara sederhana, misalnya `Nilai > 75`.
+
+Sebaliknya, **Oblique Decision Tree** menggunakan pemisahan berbasis kombinasi beberapa atribut (*multivariate split*). Pemisahan dilakukan menggunakan fungsi linear yang melibatkan lebih dari satu variabel secara bersamaan, misalnya `2 × Nilai + Kehadiran > 230`. Dengan pendekatan ini, model mampu menangkap hubungan antar atribut yang tidak dapat direpresentasikan secara optimal oleh Decision Tree tradisional.
+
+Perbedaan konsep ini menjelaskan mengapa Decision Tree kurang optimal pada data yang memiliki hubungan kompleks antar atribut, sedangkan Oblique Decision Tree mampu memberikan representasi yang lebih baik terhadap pola data tersebut.
+
+**B. Perbandingan Berdasarkan Struktur Tree**
+
+Dari sisi struktur, **Decision Tree** cenderung menghasilkan pohon yang lebih dalam (*deep tree*) dengan jumlah node yang lebih banyak. Hal ini terjadi karena proses pemisahan dilakukan secara bertahap menggunakan satu atribut pada setiap node. Akibatnya, diperlukan lebih banyak percabangan untuk mencapai hasil klasifikasi akhir.
+
+Sebaliknya, **Oblique Decision Tree** umumnya menghasilkan pohon yang lebih dangkal (*shallow tree*) dengan jumlah node yang lebih sedikit. Karena setiap pemisahan dapat mempertimbangkan beberapa atribut sekaligus, proses klasifikasi dapat dilakukan dengan lebih efisien dalam jumlah langkah yang lebih sedikit.
+
+Secara visual, perbedaan ini juga terlihat pada bentuk batas keputusan (*decision boundary*), yaitu:
+
+- **Decision Tree** → batas keputusan berbentuk garis lurus (vertikal atau horizontal)
+- **Oblique Decision Tree** → batas keputusan berbentuk garis miring yang lebih fleksibel
+
+**C. Perbandingan Berdasarkan Kemampuan Representasi Data**
+
+Dalam konteks prediksi kelulusan mahasiswa, kemampuan representasi data menjadi aspek yang sangat penting. **Decision Tree** hanya mampu memproses atribut secara terpisah, sehingga hubungan antar variabel seperti nilai akademik dan tingkat kehadiran tidak dapat dipertimbangkan secara langsung dalam satu keputusan.
+
+Sebaliknya, **Oblique Decision Tree** mampu menggabungkan beberapa atribut dalam satu aturan pemisahan. Sebagai contoh, kombinasi nilai akademik dan kehadiran dapat digunakan secara bersamaan untuk menentukan kemungkinan kelulusan mahasiswa. Hal ini membuat model lebih representatif terhadap kondisi nyata, karena keputusan dalam dunia pendidikan umumnya dipengaruhi oleh banyak faktor secara simultan.
+
+Dengan demikian, Oblique Decision Tree memiliki keunggulan dalam menangani data yang memiliki pola kompleks dan keterkaitan antar atribut yang kuat.
+
+**D. Perbandingan Berdasarkan Kompleksitas**
+
+Dari sisi kompleksitas, kedua metode memiliki karakteristik yang berbeda.
+
+Pada **Decision Tree**, kompleksitas lebih dipengaruhi oleh:
+
+- Kedalaman tree
+- Jumlah node yang terbentuk
+- Panjang jalur traversal menuju leaf node
+
+Semakin besar struktur pohon, semakin panjang proses pengambilan keputusan yang harus dilakukan.
+
+Sementara itu, pada **Oblique Decision Tree**, kompleksitas lebih dipengaruhi oleh:
+
+- Perhitungan kombinasi linear pada setiap node
+- Proses optimasi dalam menentukan hyperplane terbaik
+
+Meskipun struktur pohonnya lebih kecil, proses komputasi pada setiap node menjadi lebih berat dibandingkan Decision Tree biasa.
+
+Secara umum dapat disimpulkan bahwa:
+
+- **Decision Tree** → sederhana pada setiap node, tetapi kompleks pada struktur pohon
+- **Oblique Decision Tree** → kompleks pada setiap node, tetapi lebih sederhana pada struktur pohon
+
+**E. Perbandingan Berdasarkan Kelebihan dan Kekurangan**
+
+Setiap metode memiliki kelebihan dan kekurangan masing-masing.
+
+**Decision Tree** unggul dalam:
+
+- Kemudahan implementasi
+- Interpretasi model yang sederhana
+- Cocok digunakan untuk data dengan pola sederhana
+
+Namun, metode ini memiliki keterbatasan dalam:
+
+- Menangani data kompleks
+- Merepresentasikan hubungan antar atribut
+- Menjaga akurasi pada data multidimensi
+
+Sementara itu, **Oblique Decision Tree** unggul dalam:
+
+- Fleksibilitas model yang lebih tinggi
+- Kemampuan menangani data kompleks
+- Akurasi yang lebih baik pada kasus tertentu
+- Struktur pohon yang lebih efisien
+
+Namun, metode ini memiliki beberapa kekurangan, seperti:
+
+- Implementasi yang lebih sulit
+- Perhitungan yang lebih kompleks
+- Interpretasi model yang lebih sulit dibandingkan Decision Tree tradisional
+
+Berdasarkan perbandingan tersebut, dapat disimpulkan bahwa **Decision Tree** dan **Oblique Decision Tree** memiliki karakteristik yang berbeda dalam proses pemisahan data. Decision Tree lebih sederhana dan mudah dipahami, tetapi kurang optimal dalam menangani data yang kompleks. Sebaliknya, Oblique Decision Tree menawarkan fleksibilitas dan akurasi yang lebih baik melalui pemanfaatan kombinasi beberapa atribut, meskipun dengan konsekuensi kompleksitas komputasi yang lebih tinggi. Oleh karena itu, pemilihan metode yang digunakan perlu disesuaikan dengan karakteristik data dan kebutuhan analisis yang dilakukan.
+
 ## 8. Analisis Kompleksitas Berdasarkan Struktur Tree 
 ## 9. Potensi Pengembangan ke Depan 
 ## 10. Hasil Implementasi
