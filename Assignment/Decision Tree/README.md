@@ -44,6 +44,17 @@ Komponen utama:
 ## 4. Aplikasi Struktur Tree
 ## 5. Keunggulan 
 ## 6. Kekurangan
+**Decision Tree**
+- Tree bisa sangat besar
+- Tidak optimal untuk data yang komples
+- Split terbatas hanya 1 fitur
+- Akurasi Lebih rendah
+
+**Oblique Decision Tree**
+- Implementasi lebih sulit
+- Perhitungan lebih komples
+- Butuh effort lebih untuk memahami
+  
 ## 7. Perbandingan Antara Tree Dasar dan Modifikasi Secara Teori 
 ## 8. Analisis Kompleksitas Berdasarkan Struktur Tree 
 ## 9. Potensi Pengembangan ke Depan 
