@@ -254,7 +254,21 @@ public class PerbandinganModel {
 }
 ```
 
-## 5. Keunggulan 
+## 5. Keunggulan
+**Decision Tree**
+- Mudah dipahami dan diinterpretasikan
+- Visualisasi jelas (bentuk pohon)
+- Implementasi sederhana (cocok untuk pemula / OOP)
+- Tidak butuh perhitungan kompleks
+- Cepat untuk training data kecil
+
+**Oblique Decision Tree**
+- Lebih fleksibel (pakai kombinasi fitur)
+- Bisa menangani data kompleks dengan lebih baik
+- Tree biasanya lebih kecil (tidak terlalu dalam)
+- Akurasi lebih tinggi dibanding Decision Tree biasa (pada kasus tertentu)
+- Decision boundary lebih optimal
+
 ## 6. Kekurangan
 **Decision Tree**
 - Tree bisa sangat besar
