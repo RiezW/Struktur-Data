@@ -272,13 +272,13 @@ public class PerbandinganModel {
 ## 6. Kekurangan
 **Decision Tree**
 - Tree bisa sangat besar
-- Tidak optimal untuk data yang komples
+- Tidak optimal untuk data yang kompleks
 - Split terbatas hanya 1 fitur
 - Akurasi Lebih rendah
 
 **Oblique Decision Tree**
 - Implementasi lebih sulit
-- Perhitungan lebih komples
+- Perhitungan lebih kompleks
 - Butuh effort lebih untuk memahami
   
 ## 7. Perbandingan Antara Tree Dasar dan Modifikasi Secara Teori
@@ -365,7 +365,23 @@ Namun, metode ini memiliki beberapa kekurangan, seperti:
 - Perhitungan yang lebih kompleks
 - Interpretasi model yang lebih sulit dibandingkan Decision Tree tradisional
 
-Berdasarkan perbandingan tersebut, dapat disimpulkan bahwa **Decision Tree** dan **Oblique Decision Tree** memiliki karakteristik yang berbeda dalam proses pemisahan data. Decision Tree lebih sederhana dan mudah dipahami, tetapi kurang optimal dalam menangani data yang kompleks. Sebaliknya, Oblique Decision Tree menawarkan fleksibilitas dan akurasi yang lebih baik melalui pemanfaatan kombinasi beberapa atribut, meskipun dengan konsekuensi kompleksitas komputasi yang lebih tinggi. Oleh karena itu, pemilihan metode yang digunakan perlu disesuaikan dengan karakteristik data dan kebutuhan analisis yang dilakukan.
+**Ringkasan Perbandingan**
+
+| Aspek Perbandingan | Decision Tree | Oblique Decision Tree |
+|---|---|---|
+| **Konsep Dasar** | Menggunakan pemisahan berbasis satu atribut (*axis-parallel split*) pada setiap node | Menggunakan pemisahan berbasis kombinasi beberapa atribut (*multivariate split*) |
+| **Aturan Pemisahan** | Contoh: `Nilai > 75` | Contoh: `2 × Nilai + Kehadiran > 230` |
+| **Struktur Tree** | Cenderung lebih dalam (*deep*) dan memiliki lebih banyak node | Cenderung lebih dangkal (*shallow*) dan memiliki lebih sedikit node |
+| **Decision Boundary** | Berbentuk garis lurus (vertikal atau horizontal) | Berbentuk garis miring (*oblique*) yang lebih fleksibel |
+| **Representasi Data** | Sulit menangkap hubungan antar atribut secara langsung | Mampu merepresentasikan hubungan antar atribut dengan lebih baik |
+| **Kemampuan pada Data Kompleks** | Kurang optimal | Lebih optimal |
+| **Kompleksitas Struktur** | Lebih tinggi karena jumlah node lebih banyak | Lebih rendah karena struktur lebih ringkas |
+| **Kompleksitas Perhitungan** | Lebih sederhana pada setiap node | Lebih kompleks karena memerlukan perhitungan kombinasi linear |
+| **Kemudahan Implementasi** | Lebih mudah diimplementasikan | Lebih sulit diimplementasikan |
+| **Interpretasi Model** | Lebih mudah dipahami | Lebih sulit dipahami |
+| **Akurasi pada Kasus Kompleks** | Cenderung lebih rendah | Cenderung lebih tinggi |
+
+Berdasarkan perbandingan tersebut, dapat disimpulkan bahwa **Decision Tree** lebih cocok digunakan pada data sederhana yang membutuhkan interpretasi yang mudah, sedangkan **Oblique Decision Tree** lebih sesuai untuk data kompleks yang membutuhkan akurasi lebih tinggi serta kemampuan menangkap hubungan antar variabel secara lebih optimal.
 
 ## 8. Analisis Kompleksitas Berdasarkan Struktur Tree 
 ## 9. Potensi Pengembangan ke Depan 
