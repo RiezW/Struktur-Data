@@ -133,38 +133,44 @@ Algoritma Oblique Decision Tree bekerja dengan mencari kombinasi atribut yang ma
 Data-data tersebut nantinya akan dianalisis oleh algoritma Decision Tree maupun Oblique Decision Tree untuk menemukan pola yang dapat digunakan dalam memprediksi status kelulusan mahasiswa baru. Sebagai contoh, mahasiswa dengan nilai tinggi, kehadiran yang baik, dan jumlah SKS yang mencukupi umumnya memiliki peluang lebih besar untuk lulus dibandingkan mahasiswa yang memiliki nilai rendah dan tingkat kehadiran yang buruk. Berikut implementasi kodenya:
 ```java
 class Mahasiswa {
+
+    String nama;
     int nilai;
     int kehadiran;
-    int sks;
-    String status;
-    public Mahasiswa(int nilai, int kehadiran, int sks, String status) {
+
+    public Mahasiswa(String nama, int nilai, int kehadiran) {
+        this.nama = nama;
         this.nilai = nilai;
         this.kehadiran = kehadiran;
-        this.sks = sks;
-        this.status = status;
     }
 }
+Scanner input = new Scanner(System.in);
 
-public class DatasetMahasiswa {
-    public static void main(String[] args) {
+System.out.print("Jumlah Mahasiswa : ");
+int jumlah = input.nextInt();
+input.nextLine();
 
-        Mahasiswa[] data = {
-            new Mahasiswa(85, 90, 24, "Lulus"),
-            new Mahasiswa(78, 82, 22, "Lulus"),
-            new Mahasiswa(60, 70, 18, "Tidak Lulus"),
-            new Mahasiswa(72, 75, 20, "Tidak Lulus"),
-            new Mahasiswa(88, 95, 24, "Lulus")
-        };
+Mahasiswa[] data = new Mahasiswa[jumlah];
 
-        for (Mahasiswa m : data) {
-            System.out.println(
-                "Nilai: " + m.nilai +
-                ", Kehadiran: " + m.kehadiran +
-                ", SKS: " + m.sks +
-                ", Status: " + m.status
-            );
-        }
-    }
+for (int i = 0; i < jumlah; i++) {
+
+    System.out.println("\nData Mahasiswa ke-" + (i + 1));
+
+    System.out.print("Nama        : ");
+    String nama = input.nextLine();
+
+    System.out.print("Nilai       : ");
+    int nilai = input.nextInt();
+
+    System.out.print("Kehadiran   : ");
+    int kehadiran = input.nextInt();
+    input.nextLine();
+
+    data[i] = new Mahasiswa(
+            nama,
+            nilai,
+            kehadiran
+    );
 }
 ```
 
@@ -180,52 +186,45 @@ Jika Nilai <= 75
 ```
 Hasil dari proses ini adalah sebuah pohon keputusan yang dapat digunakan untuk melakukan prediksi terhadap data baru. Berikut implementasi kodenya:
 ```java
-public class DecisionTreeSederhana {
+public static String prediksiKelulusan(
+        int nilai,
+        int kehadiran) {
 
-    public static String prediksi(int nilai, int kehadiran) {
+    if (nilai > 75) {
 
-        if (nilai > 75) {
-            if (kehadiran > 80) {
-                return "Lulus";
-            } else {
-                return "Tidak Lulus";
-            }
+        if (kehadiran > 80) {
+            return "Lulus";
         } else {
             return "Tidak Lulus";
         }
-    }
 
-    public static void main(String[] args) {
-
-        String hasil = prediksi(80, 85);
-
-        System.out.println("Prediksi: " + hasil);
+    } else {
+        return "Tidak Lulus";
     }
 }
 ```
 
 **C. Prediksi Kelulusan Mahasiswa**, digunakan untuk menentukan status kelulusan mahasiswa berdasarkan model yang telah dibangun sebelumnya. Pengguna hanya perlu memasukkan data mahasiswa berupa nilai akademik, tingkat kehadiran, dan jumlah SKS. Sistem kemudian akan menelusuri aturan yang terdapat pada pohon keputusan hingga mencapai leaf node yang berisi hasil klasifikasi. Dengan adanya fitur ini, pihak akademik dapat melakukan evaluasi terhadap mahasiswa sejak dini dan memberikan tindakan yang sesuai apabila ditemukan potensi keterlambatan kelulusan. Berikut implementasi kodenya:
 ```java
-public class PrediksiKelulusan {
+public static void tampilkanHasil(Mahasiswa m) {
 
-    public static String prediksi(int nilai, int kehadiran) {
+    String status = prediksiKelulusan(
+            m.nilai,
+            m.kehadiran
+    );
 
-        if (nilai > 75 && kehadiran > 80) {
-            return "Lulus";
-        }
+    System.out.println("\n===== HASIL PREDIKSI =====");
+    System.out.println("Nama        : " + m.nama);
+    System.out.println("Nilai       : " + m.nilai);
+    System.out.println("Kehadiran   : " + m.kehadiran + "%");
+    System.out.println("Status      : " + status);
+}
+System.out.println("\n==============================");
+System.out.println("HASIL PREDIKSI KELULUSAN");
+System.out.println("==============================");
 
-        return "Tidak Lulus";
-    }
-
-    public static void main(String[] args) {
-
-        int nilai = 82;
-        int kehadiran = 88;
-
-        String hasil = prediksi(nilai, kehadiran);
-
-        System.out.println("Status Kelulusan: " + hasil);
-    }
+for (Mahasiswa m : data) {
+    tampilkanHasil(m);
 }
 ```
 
