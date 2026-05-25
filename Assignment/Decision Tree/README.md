@@ -465,3 +465,27 @@ Dengan adanya pengembangan tersebut, Decision Tree dan Oblique Decision Tree dih
 
 ## 11. Perbandingan performa real
 
+Berdasarkan hasil implementasi yang telah dilakukan, Decision Tree dan Oblique Decision Tree menunjukkan perbedaan dalam proses klasifikasi data mahasiswa.
+
+Pada Decision Tree tradisional, proses pengambilan keputusan dilakukan menggunakan satu atribut pada setiap node. Dalam implementasi yang dilakukan, mahasiswa dinyatakan lulus apabila memenuhi syarat nilai di atas 75 dan tingkat kehadiran di atas 80%.
+
+Sementara itu, Oblique Decision Tree menggunakan kombinasi beberapa atribut secara bersamaan dalam proses pemisahan data. Pada implementasi ini digunakan persamaan:
+
+```text
+2 × Nilai + Kehadiran > 230
+```
+Hasil pengujian menunjukkan bahwa terdapat perbedaan hasil klasifikasi pada beberapa data mahasiswa.
+
+Contoh hasil pengujian:
+
+|Nama|	Decision Tree|	Oblique Decision Tree|
+|---|---|---|
+|Ciko|	Tidak Lulus|	Tidak Lulus|
+|Najel| Tidak Lulus|	Lulus|
+|Iqbal|	Tidak Lulus|	Tidak Lulus|
+
+Pada kasus mahasiswa bernama Najel, Decision Tree menghasilkan status "Tidak Lulus" karena tingkat kehadiran berada di bawah batas minimum. Namun, Oblique Decision Tree menghasilkan status "Lulus" karena metode ini mempertimbangkan kombinasi nilai akademik dan kehadiran secara bersamaan.
+
+Hal tersebut menunjukkan bahwa Oblique Decision Tree memiliki kemampuan yang lebih fleksibel dalam merepresentasikan hubungan antar atribut dibandingkan Decision Tree tradisional.
+
+Selain itu, struktur keputusan pada Oblique Decision Tree cenderung lebih ringkas karena satu proses pemisahan dapat melibatkan beberapa atribut sekaligus. Namun, proses perhitungannya juga menjadi lebih kompleks dibandingkan Decision Tree biasa.
