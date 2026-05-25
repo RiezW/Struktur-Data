@@ -127,10 +127,9 @@ Algoritma Oblique Decision Tree bekerja dengan mencari kombinasi atribut yang ma
 **A. Input Data Mahasiswa**, digunakan untuk menyimpan informasi akademik mahasiswa yang akan digunakan sebagai dataset dalam proses pelatihan (training) maupun pengujian (testing) model klasifikasi. Data yang dimasukkan terdiri dari beberapa atribut yang dianggap memengaruhi kelulusan mahasiswa, yaitu:
 - Nilai Akademik → menunjukkan performa akademik mahasiswa selama perkuliahan.
 - Persentase Kehadiran → menunjukkan tingkat kehadiran mahasiswa dalam mengikuti kegiatan perkuliahan.
-- Jumlah SKS → menunjukkan jumlah mata kuliah yang berhasil ditempuh mahasiswa.
 - Status Kelulusan → digunakan sebagai label atau target klasifikasi yang akan dipelajari oleh model.
-  
-Data-data tersebut nantinya akan dianalisis oleh algoritma Decision Tree maupun Oblique Decision Tree untuk menemukan pola yang dapat digunakan dalam memprediksi status kelulusan mahasiswa baru. Sebagai contoh, mahasiswa dengan nilai tinggi, kehadiran yang baik, dan jumlah SKS yang mencukupi umumnya memiliki peluang lebih besar untuk lulus dibandingkan mahasiswa yang memiliki nilai rendah dan tingkat kehadiran yang buruk. Berikut implementasi kodenya:
+
+Data-data tersebut nantinya akan dianalisis oleh algoritma Decision Tree maupun Oblique Decision Tree untuk menemukan pola yang dapat digunakan dalam memprediksi status kelulusan mahasiswa baru. Sebagai contoh, mahasiswa dengan nilai tinggi dan kehadiran yang baik yang mencukupi umumnya memiliki peluang lebih besar untuk lulus dibandingkan mahasiswa yang memiliki nilai rendah dan tingkat kehadiran yang buruk. Berikut implementasi kodenya:
 ```java
 class Mahasiswa {
 
@@ -156,13 +155,13 @@ for (int i = 0; i < jumlah; i++) {
 
     System.out.println("\nData Mahasiswa ke-" + (i + 1));
 
-    System.out.print("Nama        : ");
+    System.out.print("Nama             : ");
     String nama = input.nextLine();
 
-    System.out.print("Nilai       : ");
+    System.out.print("Nilai            : ");
     int nilai = input.nextInt();
 
-    System.out.print("Kehadiran   : ");
+    System.out.print("Kehadiran        : ");
     int kehadiran = input.nextInt();
     input.nextLine();
 
@@ -174,21 +173,16 @@ for (int i = 0; i < jumlah; i++) {
 }
 ```
 
-B. Fitur ini digunakan untuk membangun struktur pohon keputusan (Decision Tree) berdasarkan dataset mahasiswa yang telah dimasukkan sebelumnya. Pada tahap ini, sistem akan mencari atribut terbaik yang dapat digunakan untuk memisahkan data menjadi beberapa kelompok. Pemilihan atribut dilakukan berdasarkan kemampuan atribut tersebut dalam membedakan mahasiswa yang lulus dan tidak lulus. Sebagai contoh, sistem dapat menemukan bahwa atribut Nilai Akademik merupakan atribut yang paling berpengaruh sehingga dipilih sebagai root node. Contoh aturan yang dapat dihasilkan:
+B. **Model Decision Tree dan Oblique Decision Tree**, Fitur ini digunakan untuk membangun model klasifikasi yang akan menentukan status kelulusan mahasiswa. Sistem menggunakan dua pendekatan yang berbeda, yaitu Decision Tree tradisional dan Oblique Decision Tree. Pada Decision Tree tradisional, proses pemisahan data dilakukan berdasarkan satu atribut pada setiap node. Dalam implementasi ini, atribut nilai digunakan sebagai root node, kemudian atribut kehadiran digunakan sebagai node berikutnya untuk menentukan status kelulusan. Sementara itu, Oblique Decision Tree menggunakan kombinasi beberapa atribut sekaligus dalam satu aturan pemisahan. Pada implementasi ini digunakan persamaan linear:
 ```java
-Jika Nilai > 75
-    Jika Kehadiran > 80
-        Lulus
-    Jika tidak
-        Tidak Lulus
-Jika Nilai <= 75
-    Tidak Lulus
+2 × Nilai + Kehadiran > 230
 ```
-Hasil dari proses ini adalah sebuah pohon keputusan yang dapat digunakan untuk melakukan prediksi terhadap data baru. Berikut implementasi kodenya:
+Pendekatan tersebut memungkinkan model membentuk batas keputusan yang lebih fleksibel dibandingkan Decision Tree tradisional.Berikut implementasi kodenya:
 ```java
-public static String prediksiKelulusan(
+public static String decisionTree( // Decision Tree
         int nilai,
-        int kehadiran) {
+        int kehadiran
+) {
 
     if (nilai > 75) {
 
@@ -202,53 +196,51 @@ public static String prediksiKelulusan(
         return "Tidak Lulus";
     }
 }
+public static String obliqueDecisionTree( // Oblique Decision Tree
+        int nilai,
+        int kehadiran
+) {
+
+    if ((2 * nilai) + kehadiran > 230) {
+        return "Lulus";
+    } else {
+        return "Tidak Lulus";
+    }
+}
 ```
 
-**C. Prediksi Kelulusan Mahasiswa**, digunakan untuk menentukan status kelulusan mahasiswa berdasarkan model yang telah dibangun sebelumnya. Pengguna hanya perlu memasukkan data mahasiswa berupa nilai akademik, tingkat kehadiran, dan jumlah SKS. Sistem kemudian akan menelusuri aturan yang terdapat pada pohon keputusan hingga mencapai leaf node yang berisi hasil klasifikasi. Dengan adanya fitur ini, pihak akademik dapat melakukan evaluasi terhadap mahasiswa sejak dini dan memberikan tindakan yang sesuai apabila ditemukan potensi keterlambatan kelulusan. Berikut implementasi kodenya:
+**C. Prediksi dan Perbandingan Kelulusan Mahasiswa**, fitur ini digunakan untuk melakukan prediksi status kelulusan mahasiswa menggunakan kedua model yang telah dibangun. Setiap data mahasiswa akan diproses oleh Decision Tree dan Oblique Decision Tree, kemudian hasil prediksi dari kedua metode ditampilkan secara berdampingan. Melalui fitur ini, pengguna dapat mengamati perbedaan hasil klasifikasi yang diberikan oleh kedua model. Perbandingan tersebut menjadi dasar untuk menganalisis efektivitas penggunaan split tunggal pada Decision Tree dan split multivariat pada Oblique Decision Tree. Berikut Implementasi kodenya:
 ```java
 public static void tampilkanHasil(Mahasiswa m) {
 
-    String status = prediksiKelulusan(
-            m.nilai,
-            m.kehadiran
-    );
+    String hasilDecisionTree =
+            decisionTree(
+                    m.nilai,
+                    m.kehadiran
+            );
 
-    System.out.println("\n===== HASIL PREDIKSI =====");
-    System.out.println("Nama        : " + m.nama);
-    System.out.println("Nilai       : " + m.nilai);
-    System.out.println("Kehadiran   : " + m.kehadiran + "%");
-    System.out.println("Status      : " + status);
+    String hasilOblique =
+            obliqueDecisionTree(
+                    m.nilai,
+                    m.kehadiran
+            );
+
+    System.out.println("\n==============================");
+    System.out.println("HASIL PREDIKSI MAHASISWA");
+    System.out.println("==============================");
+
+    System.out.println("Nama             : " + m.nama);
+    System.out.println("Nilai            : " + m.nilai);
+    System.out.println("Kehadiran        : " + m.kehadiran + "%");
+
+    System.out.println("\nDecision Tree");
+    System.out.println("Status           : " + hasilDecisionTree);
+
+    System.out.println("\nOblique Decision Tree");
+    System.out.println("Status           : " + hasilOblique);
 }
-System.out.println("\n==============================");
-System.out.println("HASIL PREDIKSI KELULUSAN");
-System.out.println("==============================");
-
 for (Mahasiswa m : data) {
     tampilkanHasil(m);
-}
-```
-
-**D. Perbandingan Hasil Prediksi**, digunakan untuk membandingkan hasil klasifikasi yang diperoleh dari Decision Tree dan Oblique Decision Tree. Tujuannya adalah untuk mengetahui metode mana yang memberikan hasil yang lebih baik berdasarkan data yang digunakan. Perbandingan dapat dilakukan menggunakan metrik seperti akurasi, precision, recall, dan F1-score. Hasil evaluasi ini dapat digunakan untuk menentukan model yang paling sesuai dalam memprediksi kelulusan mahasiswa. Berikut implementasi kodenya:
-```java
-public class PerbandinganModel {
-
-    public static void main(String[] args) {
-
-        double akurasiDecisionTree = 82.5;
-        double akurasiObliqueTree = 89.7;
-
-        System.out.println("Decision Tree : " +
-                           akurasiDecisionTree + "%");
-
-        System.out.println("Oblique Decision Tree : " +
-                           akurasiObliqueTree + "%");
-
-        if (akurasiObliqueTree > akurasiDecisionTree) {
-            System.out.println(
-                "Oblique Decision Tree memiliki performa lebih baik."
-            );
-        }
-    }
 }
 ```
 
