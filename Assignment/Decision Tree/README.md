@@ -461,7 +461,7 @@ Selain itu, implementasi sistem dapat dikembangkan menjadi aplikasi berbasis web
 Dengan adanya pengembangan tersebut, Decision Tree dan Oblique Decision Tree diharapkan dapat digunakan secara lebih optimal dalam membantu proses pengambilan keputusan, khususnya pada bidang pendidikan.
 
 ## 10. Hasil Implementasi
-<img width="287" height="996" alt="WhatsApp Image 2026-05-25 at 14 13 01" src="https://github.com/user-attachments/assets/6ddf391f-8405-402c-b151-319499fc4780" />
+<img width="274" height="1315" alt="WhatsApp Image 2026-05-25 at 14 36 17" src="https://github.com/user-attachments/assets/2328e9ff-229a-4148-9029-ec07845a2e09" />
 
 ## 11. Perbandingan performa real
 
