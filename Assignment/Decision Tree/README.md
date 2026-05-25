@@ -383,6 +383,78 @@ Namun, metode ini memiliki beberapa kekurangan, seperti:
 Berdasarkan perbandingan tersebut, dapat disimpulkan bahwa **Decision Tree** lebih cocok digunakan pada data sederhana yang membutuhkan interpretasi yang mudah, sedangkan **Oblique Decision Tree** lebih sesuai untuk data kompleks yang membutuhkan akurasi lebih tinggi serta kemampuan menangkap hubungan antar variabel secara lebih optimal.
 
 ## 8. Analisis Kompleksitas Berdasarkan Struktur Tree 
+## 8. Analisis Kompleksitas Berdasarkan Struktur Tree 
+**Decision Tree**
+
+1. Analisis Struktur
+   - menggunakan axis pararel split 1
+   - perlu beberapa tahap keputusan sehingga dept bertambah, dan jumlah node
+  
+2. Kompleksitas
+   - Training (Hitung entropy & information gain di setiap node)
+   - Dilakukan berulang (rekusif)
+    ```
+     O(n log n)
+    ```
+   - Prediksi
+     - Telusuri dari root ke leaf
+    ```
+    O(depth)
+    ```
+
+3. Kaitannya dengan Objek (Mahasiswa)
+
+   Karena kelulusan dipengaruhi:
+   - nilai
+   - kehadiran
+   - SKS
+   Decision Tree:
+   - memproses secara bertahap (tidak sekaligus)
+   - menyebabkan:
+      - pohon lebih dalam
+      - proses lebih panjang
+
+**Oblique Decision Tree**
+Bedasarkan konsep Oblique menggunakan
+```
+2 × Nilai + Kehadiran > 230
+```
+
+1. Analisis Struktur
+   - Menggunakan multivariate split
+   - Bisa langsung menggabungkan beberapa atribut (sehingga depth lebih kecil,       node lebih sedikit)
+2. Kompleksitas
+   - Training (Mencari kombinasi atribut terbaik dan menghitung fungsi linear)
+     ```c
+      O(n × m) atau lebih tinggi
+     ```
+  Prediksi
+  -  Setiap node
+     ```
+     2*nilai + kehadiran
+     ```
+  -  Kompleksitas
+     ```
+     O(depth × m)
+     ```
+3. Kaitannya dengan objek (Mahasiswa)
+   
+   Karena kelulusan = kombinasi faktor
+   
+   Oblique Tree:
+    - langsung mempertimbangkan hubungan:
+       - nilai + kehadiran + SKS
+         
+   sehingga:
+    - tidak perlu banyak percabangan
+    - tree lebih ringkas
+
+**Kesimpulan**
+
+Berdasarkan struktur tree yang dihasilkan pada implementasi, Decision Tree memiliki kompleksitas yang dipengaruhi oleh kedalaman pohon dan jumlah node yang relatif lebih besar akibat penggunaan pemisahan berbasis satu atribut. Hal ini menyebabkan proses prediksi menjadi lebih panjang pada data dengan banyak faktor seperti kelulusan mahasiswa.
+
+Sebaliknya, Oblique Decision Tree mampu menghasilkan struktur pohon yang lebih dangkal dengan jumlah node yang lebih sedikit karena menggunakan kombinasi beberapa atribut dalam proses pemisahan. Namun, kompleksitas perhitungan pada setiap node menjadi lebih tinggi. Dengan demikian, terdapat trade-off antara kompleksitas struktur dan kompleksitas komputasi dalam kedua metode tersebut.
+
 ## 9. Potensi Pengembangan ke Depan 
 
 Berdasarkan hasil analisis yang telah dilakukan, Decision Tree dan Oblique Decision Tree masih memiliki potensi untuk dikembangkan lebih lanjut agar mampu menghasilkan performa klasifikasi yang lebih baik.
