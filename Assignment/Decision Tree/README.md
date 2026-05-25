@@ -483,6 +483,7 @@ Contoh hasil pengujian:
 |Ciko|	Tidak Lulus|	Tidak Lulus|
 |Najel| Tidak Lulus|	Lulus|
 |Iqbal|	Tidak Lulus|	Tidak Lulus|
+|Acha| Tidak Lulus| Lulus|
 
 Pada kasus mahasiswa bernama Najel, Decision Tree menghasilkan status "Tidak Lulus" karena tingkat kehadiran berada di bawah batas minimum. Namun, Oblique Decision Tree menghasilkan status "Lulus" karena metode ini mempertimbangkan kombinasi nilai akademik dan kehadiran secara bersamaan.
 
