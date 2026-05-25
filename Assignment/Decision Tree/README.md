@@ -41,6 +41,98 @@ Komponen utama:
     - Berisi hasil klasifikasi (misal: Lulus / Tidak Lulus)
 
 ## 3. Visualisasi Diagram
+1. Visualisasi Dataset Mahasiswa
+
+    Pada penelitian ini, digunakan contoh data mahasiswa yang terdiri dari beberapa atribut, yaitu nilai akademik, tingkat kehadiran, dan jumlah SKS yang diambil. Data tersebut digunakan untuk menentukan status kelulusan mahasiswa.
+
+    Contoh dataset:
+
+    | Nilai | Kehadiran (%) | Jumlah SKS | Status |
+    |---|---|---|---|
+    | 85 | 90 | 24 | Lulus |
+    | 78 | 82 | 22 | Lulus |
+    | 60 | 70 | 18 | Tidak Lulus |
+    | 72 | 75 | 20 | Tidak Lulus |
+    | 88 | 95 | 24 | Lulus |
+
+    Visualisasi data dapat direpresentasikan menggunakan scatter plot dengan:
+    - Sumbu X = Nilai Akademik
+    - Sumbu Y = Kehadiran
+    - Titik biru = Mahasiswa lulus
+    - Titik merah = Mahasiswa tidak lulus
+
+    Visualisasi ini menunjukkan bahwa data tidak selalu dapat dipisahkan secara optimal hanya dengan satu atribut saja.
+
+2. Visualisasi Decision Tree Tradisional
+
+    Decision Tree tradisional bekerja dengan melakukan pemisahan data menggunakan satu atribut pada setiap node.
+
+    Contoh struktur Decision Tree:
+
+    ```text
+                    Nilai > 75?
+                    /          \
+                Ya            Tidak
+            Kehadiran >80?    Tidak Lulus
+                /      \
+            Ya         Tidak
+        Lulus      Tidak Lulus
+    ````
+
+    Pada struktur tersebut:
+
+    * Root node digunakan sebagai keputusan awal.
+    * Internal node digunakan untuk proses pemisahan data.
+    * Leaf node digunakan untuk menentukan hasil klasifikasi akhir.
+
+    Decision Tree tradisional menggunakan axis-parallel split, yaitu pemisahan berdasarkan satu atribut dalam satu waktu.
+
+3. Visualisasi Decision Boundary pada Decision Tree
+
+    Pada Decision Tree tradisional, batas keputusan (decision boundary) berbentuk garis vertikal atau horizontal karena pemisahan hanya dilakukan berdasarkan satu atribut.
+
+    Contoh split:
+
+    ```text
+    Nilai > 75
+    ```
+
+    Visualisasi sederhana:
+
+    ```text
+    |
+    |      Lulus
+    |
+    |-------------
+    |
+    | Tidak Lulus
+    |
+    ```
+
+    Keterbatasan pendekatan ini adalah model sulit merepresentasikan hubungan antar atribut yang kompleks.
+
+4. Visualisasi Oblique Decision Tree
+
+    Oblique Decision Tree menggunakan multivariate split, yaitu pemisahan berdasarkan kombinasi beberapa atribut sekaligus.
+
+    Contoh split:
+
+    ```text
+    2 × Nilai + Kehadiran > 230
+    ```
+
+    Visualisasi sederhana:
+
+    ```text
+    \      Lulus
+     \
+      \
+       \-------------
+        \
+        Tidak Lulus
+    ```
+
+    Dengan pendekatan ini, model mampu membentuk decision boundary yang lebih fleksibel dibandingkan Decision Tree tradisional.
 ## 4. Aplikasi Struktur Tree
 ## 5. Keunggulan 
 ## 6. Kekurangan
